@@ -1,0 +1,17 @@
+/*font styling*/
+body h1 { font-weight: bold; font-size: calc(2rem + 1.8vw); }
+body h2 { font-weight: bold; font-size: calc(2rem + 1.5vw); }
+body h3 { font-weight: bold; font-size: calc(2rem + 1.3vw); }
+body h4 { font-size: calc(2rem + 1vw); font-weight: bold;}
+body h5 { font-size: calc(2rem + 0.8vw); font-weight: bold;}
+body h6 { font-size: calc(2rem + 0.6vw); font-weight: bold;}
+body p, body p a, body a { font-size: calc(1rem + 0.4vw); }
+
+/*html structure*/
+.container { padding: 50px 15px; }
+
+/* Media queries */
+
+@media (max-width: 991px) {
+  .container { padding: 25px 15px; }
+}
