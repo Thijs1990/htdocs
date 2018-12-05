@@ -48,9 +48,26 @@ try {
     // set the PDO error mode to exception
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-//values proberen te echoën uit html formulier
 
+
+// prepare sql and bind parameters
+$stmt = $connection->prepare("INSERT INTO user (user_email, user_pass, user_name)
+VALUES (:user_email, :user_pass, :user_name)");
+$stmt->bindParam(":user_email", $user_email);
+$stmt->bindParam(":user_pass", $user_pass);
+$stmt->bindParam(":user_name", $user_name);
+
+// insert a new entry into user table
+$user_email = htmlspecialchars($_POST["user_email"]);
+$user_pass = htmlspecialchars($_POST["user_pass"]);
+$user_name = htmlspecialchars($_POST["user_name"]);
+$stmt->execute();  //execute prepared statement with above parameters
+
+echo "New user account created successfully. " . "Welcome " . htmlspecialchars($_POST["user_name"]) . "."; ?> <br> <?php
+echo "We've sent an account activation link to " . htmlspecialchars($_POST["user_email"]) . ".";
 }
+
+
 catch(PDOException $error) {
     echo 'Error: ' . $error->getMessage() . "<br/>";
     exit;
@@ -62,14 +79,12 @@ $connection = null;
 
 // hier formulier input pakken
 
-// if( !empty() ) { //dit gebruiken ipv strlen
-//
-// }
 
-if( ( !empty( $_POST["user_name"] ) ) && ( !empty( $_POST["user_email"] ) ) ) {
-  echo "Account created succesfully. Welcome " . htmlspecialchars($_POST["user_name"]) . "."; ?> <br> <?php
-  echo "We've sent an account activation link to " . htmlspecialchars($_POST["user_email"]) . ".";
-}
-else {
-  echo "It appears you entered incorrect data.";
-}
+//values proberen te echoën uit html formulier
+// if( ( !empty( $_POST["user_name"] ) ) && ( !empty( $_POST["user_email"] ) ) ) {
+//   echo "Account created succesfully. Welcome " . htmlspecialchars($_POST["user_name"]) . "."; ?> <br> <?php
+//   echo "We've sent an account activation link to " . htmlspecialchars($_POST["user_email"]) . ".";
+// }
+// else {
+//   echo "It appears you entered incorrect data.";
+// }
