@@ -7,7 +7,7 @@
 <form action="index.php" method="post">
   <p>Input email address: <input type="email" name="user_email" placeholder="enter a valid email address" required></p>
   <p>Input username: <input type="text" name="user_name" placeholder="" required></p>
-  <p>Input password: <input type="text" name="user_pass" placeholder="" required></p>
+  <p>Input password: <input type="password" name="user_pass" placeholder="" required></p>
   <p><input type="submit"></p>
 </form>
 <?php
